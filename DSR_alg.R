@@ -14,7 +14,7 @@ library(stlplus)
 
 # Data -------------------------------------------------------------------------
 # TG data filtered and subsetted 
-psmsl <- read.csv("E:/everything_new/all_important_data/Bible_PSMSL1994_2021May_1_July.csv")
+psmsl <- read.csv("Bible_PSMSL1994_2021May_1_July.csv")
 # Filtered 
 sub_psmsl <- psmsl[psmsl$id !=0,]
 
@@ -22,25 +22,25 @@ sub_psmsl <- psmsl[psmsl$id !=0,]
 time_array =seq(as.Date("1/1/1994", format= "%m/%d/%Y"), by = "month", length.out = 336)
 
 # All XTRACK observation points; XTRACK key file 
-Xtrack <- read.csv("E:/everything_new/all_important_data/xtrack_dataPass.csv", header=TRUE)
+Xtrack <- read.csv("xtrack_dataPass.csv", header=TRUE)
 
 # going along the coastline and finding distance to the shelf break
 # inputID is the TG station ID, TargetID is the coastal point, 
 # DistanceKM is the distance from the TG
-along_coastTG <- read.csv("E:/everything_new/all_important_data/coast_tg.csv",header = TRUE)
+along_coastTG <- read.csv("coast_tg.csv",header = TRUE)
 
 # the distance of each of those coastline points(including station points) from the shelf break
-coast_to_shelf <- read.csv("E:/everything_new/all_important_data/coast_to_shelf.csv",header = TRUE)
+coast_to_shelf <- read.csv("coast_to_shelf.csv",header = TRUE)
 
 # target id is the points on the coastline and hubdist is the distance to the shelf break
 names(coast_to_shelf)[names(coast_to_shelf) == "ID"] <- "TargetID"
 
 # minor islands list
-isleP1 <- read.csv("E:/world_coast/april/may25/all_new/islands/isl/isl1.csv",header = TRUE)
-isleP2 <- read.csv("E:/world_coast/april/may25/all_new/islands/isl/isl2.csv",header = TRUE)
-isleP3 <- read.csv("E:/world_coast/april/may25/all_new/islands/isl/isl3.csv",header = TRUE)
-isleP4 <- read.csv("E:/world_coast/april/may25/all_new/islands/isl/isl4.csv",header = TRUE)
-isleP5 <- read.csv("E:/world_coast/april/may25/all_new/islands/isl/isl5.csv",header = TRUE)
+isleP1 <- read.csv("isl/isl1.csv",header = TRUE)
+isleP2 <- read.csv("isl/isl2.csv",header = TRUE)
+isleP3 <- read.csv("isl/isl3.csv",header = TRUE)
+isleP4 <- read.csv("isl/isl4.csv",header = TRUE)
+isleP5 <- read.csv("isl/isl5.csv",header = TRUE)
 islandTG <- rbind(isleP1, isleP2, isleP3, isleP4, isleP5)
 
 # Filtering Function for XTRACK-------------------------------------------------------------------------
@@ -293,7 +293,7 @@ for (tg in 1:nrow(sub_psmsl)){
       
       csv_f1 = paste(substring(xy_name,1,nchar(xy_name)-5), substring(xy_name,nchar(xy_name)-4, nchar(xy_name)-2), sep='_')
       # getting the altimetry path .nc file
-      file_name1 = paste("E:/everything_new/all_important_data/xtrack_sla_350_94_21_month/",csv_f1,".csv")
+      file_name1 = paste("xtrack_sla_350_94_21_month/",csv_f1,".csv")
       
       file_name1 = gsub(" ","",file_name1)
       
@@ -341,3 +341,4 @@ write.csv(TG_extraInfo, "auxilliary_data.csv", row.names = FALSE)
     
     
     
+
